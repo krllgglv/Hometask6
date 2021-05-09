@@ -3,10 +3,10 @@ package ru.kgogolev.task6.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -21,14 +21,18 @@ public class Order {
     @Column(name = "id")
     private Long id;
 
-//    @Column(name = "id_user")
-//    private Long id_user;
-
 
     @ManyToOne
     @JoinColumn(name = "id_user")
-//            foreignKey = @ForeignKey(name = "orders_id_user_fk"))
     private User user;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "products_in_order",
+            joinColumns = @JoinColumn(name = "id_order"),
+            inverseJoinColumns = @JoinColumn(name = "id_product")
+    )
+    private List<Product> productsInOrder;
 
     @Override
     public String toString() {

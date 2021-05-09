@@ -4,12 +4,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import ru.kgogolev.task6.model.Order;
-import ru.kgogolev.task6.model.Product;
-import ru.kgogolev.task6.repository.ProductRepository;
-import ru.kgogolev.task6.repository.UserRepository;
-
-import java.util.List;
+import ru.kgogolev.task6.service.Task6Service;
 
 @SpringBootApplication
 public class Task6Application {
@@ -19,10 +14,10 @@ public class Task6Application {
     }
 
     @Bean
-    public CommandLineRunner runner(UserRepository repository){
+    public CommandLineRunner runner(Task6Service service) {
         return args -> {
-            List<Order> orders = repository.getAllOrdersByUserId(1L);
-            orders.forEach(System.out::println);
+                service.printAllCustomersForSomeProduct(2L);
+                service.printAllOrderedProductsByCustomerId(1L);
         };
     }
 }

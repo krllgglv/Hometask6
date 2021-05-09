@@ -12,7 +12,7 @@ import ru.kgogolev.task6.model.User;
 public class HibernateConfiguration {
 
     @Bean
-    public org.hibernate.cfg.Configuration config(){
+    public org.hibernate.cfg.Configuration config() {
         return new org.hibernate.cfg.Configuration()
                 .addAnnotatedClass(Product.class)
                 .addAnnotatedClass(Order.class)
@@ -20,7 +20,7 @@ public class HibernateConfiguration {
     }
 
     @Bean
-    public SessionFactory createFactory(){
+    public SessionFactory createFactory() {
         return config().buildSessionFactory();
     }
 }

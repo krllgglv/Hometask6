@@ -53,6 +53,7 @@ CREATE TABLE products_in_order
     PRIMARY KEY (id_order, id_product)
 );
 
+
 INSERT INTO products_in_order (id_order, id_product, quantity, price)
 VALUES (1, 1, 1, 879.90),
        (1, 2, 1, 524.90),

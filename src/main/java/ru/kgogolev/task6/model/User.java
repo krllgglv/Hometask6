@@ -3,7 +3,6 @@ package ru.kgogolev.task6.model;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.List;
@@ -20,10 +19,9 @@ public class User {
     private Long id;
 
     @Column(name = "name")
-    private String  name;
+    private String name;
 
-    @OneToMany(mappedBy = "user")
-//    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     private List<Order> orders;
 
     @Override
@@ -31,7 +29,6 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-
                 '}';
     }
 }
